@@ -21,6 +21,13 @@ Yipeng Niu yn2371
 
 Features
 --------------------------------------
+Management commands:
+* Import: A command that can be used to import the data from the 2018 census file (in CSV format). The file path should be specified at the command line after the name of the management command. 
+	$ python manage.py import_squirrel_data /path/to/file.csv
+	The squirrel census file can be downloaded here: https://data.cityofnewyork.us/api/views/vfnx-vebw/rows.csv
+* Export: A command that can be used to export the data in CSV format. The file path should be specified at the command line after the name of the management command. 
+	$ python manage.py export_squirrel_data /path/to/file.csv
+
 Views:
 * A view that shows a map that displays the location of the squirrel sightings on an OpenStreets map.
   * Located at: /map
