@@ -1,3 +1,12 @@
+#Yipeng Niu yn2371
 from django.shortcuts import render
+ftom django.template import loader
+from django.http import HttpResponse
+from sighting.models import Record
 
-# Create your views here.
+def index(request):
+    template = loader.get_template('map.html')
+    #map.html is provided by Prof. Logston
+    records = Record.objects.all()
+    context = {'sighting records': records}
+    return HttpResponse(template.render(context, request))
