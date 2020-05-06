@@ -6,5 +6,5 @@ urlpatterns = [
         path('', views.index),
         path('add/', views.add),
         path('stats/', views.stats),
-        re_path(r'(?P,uer_id>\d+[A-Z]-[A-Z]{2}-\d{4}-\d{9})/', views.s_id)
+        re_path(r'(?P<uuer_id>\d+[A-Z]-[A-Z]{2}-\d{4}-\d{9})/', views.s_id)
         ]

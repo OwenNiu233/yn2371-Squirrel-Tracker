@@ -10,7 +10,7 @@ from matplotlib.figure import Figure
 from matplotlib import pylab
 from pylab import *
 import pandas as pd
-import PIL, PIL.Image
+import PIL
 from io import BytesIO
 from .models import Record
 from .forms import RecordForm

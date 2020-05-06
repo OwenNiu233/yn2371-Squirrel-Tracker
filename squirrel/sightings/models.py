@@ -21,10 +21,9 @@ class Record(models.Model):
             choices = SHIFT_CHOICES
             )
 
-    date = models.IntegerField(
-            'Date',
-            help_text = 'MMDDYYYY',
-            max_length = 8)
+    date = models.DateField(
+            'Date'
+           )
     
     AGE_CHOICES = (
             ('ADULT', 'Adult'),
@@ -87,7 +86,7 @@ class Record(models.Model):
             max_length = 100
             )
     
-    Kuks = models.BooleanField(
+    kuks = models.BooleanField(
             'Kuks',
             default = False)
 

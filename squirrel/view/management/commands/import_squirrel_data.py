@@ -1,8 +1,9 @@
 import csv
-
+#Original by Prof. Logston
+#modified by Yipeng Niu
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from squirrels.models import Sighting
+from sightings.models import Record
 
 
 class Command(BaseCommand):
@@ -18,7 +19,7 @@ class Command(BaseCommand):
 
         sightings = []
         for dict_ in data:
-            sightings.append(Sighting(
+            sightings.append(Record(
                 latitude=float(dict_['Y']),
                 longitude=float(dict_['X']),
                 unique_squirrel_id=dict_['Unique Squirrel ID'],
@@ -43,4 +44,4 @@ class Command(BaseCommand):
                 runs_from=dict_['Runs from'].lower() == 'true',
             ))
 
-        Sighting.objects.bulk_create(sightings)
+        Record.objects.bulk_create(sightings)

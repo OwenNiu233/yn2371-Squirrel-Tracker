@@ -1,6 +1,6 @@
 #Yipeng Niu yn2371
-from django.db imoport models
-from django.forms import DodelForm
+from django.db import models
+from django.forms import ModelForm
 from .models import Record
 
 
