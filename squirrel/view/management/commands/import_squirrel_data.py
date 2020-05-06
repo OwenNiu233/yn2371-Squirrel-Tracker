@@ -4,7 +4,7 @@ import csv
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from sightings.models import Record
-
+import pandas as pd
 
 class Command(BaseCommand):
     help = 'Import squirrel data from csv file'
@@ -17,31 +17,29 @@ class Command(BaseCommand):
             reader = csv.DictReader(fp)
             data = list(reader)
 
-        sightings = []
-        for dict_ in data:
-            sightings.append(Record(
-                latitude=float(dict_['Y']),
-                longitude=float(dict_['X']),
-                unique_squirrel_id=dict_['Unique Squirrel ID'],
-                shift=dict_['Shift'].lower(),
-                date=timezone.datetime.strptime(dict_['Date'], '%m%d%Y').date(),
-                age=dict_['Age'],
-                primary_fur_color=dict_['Primary Fur Color'],
-                specific_location=dict_['Specific Location'],
-                running=dict_['Running'].lower() == 'true',
-                chasing=dict_['Chasing'].lower() == 'true',
-                climbing=dict_['Climbing'].lower() == 'true',
-                eating=dict_['Eating'].lower() == 'true',
-                foraging=dict_['Foraging'].lower() == 'true',
-                other_activities=dict_['Other Activities'],
-                kuks=dict_['Kuks'].lower() == 'true',
-                quaas=dict_['Quaas'].lower() == 'true',
-                moans=dict_['Moans'].lower() == 'true',
-                tail_flags=dict_['Tail flags'].lower() == 'true',
-                tail_twitches=dict_['Tail twitches'].lower() == 'true',
-                approaches=dict_['Approaches'].lower() == 'true',
-                indifferent=dict_['Indifferent'].lower() == 'true',
-                runs_from=dict_['Runs from'].lower() == 'true',
-            ))
-
-        Record.objects.bulk_create(sightings)
+            for item in data:
+                s = Record(
+                latitude=float(item['Y']),
+                longitude=float(item['X']),
+                unique_squirrel_id=item['Unique Squirrel ID'],
+                shift=item['Shift'].lower(),
+                date=timezone.datetime.strptime(item['Date'], '%m%d%Y').date(),
+                age=item['Age'],
+                primary_fur_color=item['Primary Fur Color'],
+                specific_location=item['Specific Location'],
+                running=item['Running'].lower() == 'true',
+                chasing=item['Chasing'].lower() == 'true',
+                climbing=item['Climbing'].lower() == 'true',
+                eating=item['Eating'].lower() == 'true',
+                foraging=item['Foraging'].lower() == 'true',
+                other_activities=item['Other Activities'],
+                kuks=item['Kuks'].lower() == 'true',
+                quaas=item['Quaas'].lower() == 'true',
+                moans=item['Moans'].lower() == 'true',
+                tail_flags=item['Tail flags'].lower() == 'true',
+                tail_twitches=item['Tail twitches'].lower() == 'true',
+                approaches=item['Approaches'].lower() == 'true',
+                indifferent=item['Indifferent'].lower() == 'true',
+                runs_from=item['Runs from'].lower() == 'true',
+                )
+                s.save
