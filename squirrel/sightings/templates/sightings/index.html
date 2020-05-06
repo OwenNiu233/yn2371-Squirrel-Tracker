@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View</title>
+</head>	
+<body>
+<h2>Click on an Unique Squirrel ID to view or update the pticular sighting record</h2>
+<h2><a href = "/sightings/add/">Click Here to create a new sighting record</a></h2>
+<h2><a href = "/sightings/stats/">Click Here for general stats about the sightings</a></h2>
+<table border = 1>
+    <tr>
+	<th>unique_squirrel_id</th>
+	<th>date</th>
+    </tr>
+    {% for item in squi_list %}
+    <tr> 
+	<td><a href="/sightings/{{ item.unique_squirrel_id }}/">{{ item.unique_squirrel_id }}</a></td>
+	<td>{{ item.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
