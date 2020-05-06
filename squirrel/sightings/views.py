@@ -16,12 +16,6 @@ from .models import Record
 from .forms import RecordForm
 
 
-def index(request):
-    squirrel_list = Record.objects.order_by('id')
-    template = loader.get_template('sightings/index.html')
-    context = {'squirrel_list': squirrel_list}
-    return HttpResponse(template.render(context, request))
-
 def s_id(request, user_id):
     data = Record.objects.get(unique_squirrel_id = user_id) 
     if request.method == 'POST':
@@ -30,34 +24,37 @@ def s_id(request, user_id):
             form.save(commit = True)
             return HttpResponseRedirect('/sightings/')
     else:
-        form = SightForm(instance = data)
-    return render(request, 'sightings/update.html', {'form':form})
+        form = RecordForm(instance = data)
+    return render(request, 'sightings/update.html', {'form': form})
+
+def index(request):
+    squirrel_list = Record.objects.order_by('id')
+    template = loader.get_template('sightings/index.html')
+    context = {'squirrel_list': squirrel_list}
+    return HttpResponse(template.render(context, request))
 
 def add(request):
     if request.method == 'POST':
-        form = SightForm(request.POST)
+        form = RecordForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/sightings/')
     else:
-        form = SightForm()
-
-
-
+        form = RecordForm()
     return render(request, 'sightings/add.html', {'form':form})
 
+#This stats function plots the general stats that are shown on /sightings/stats.
 def stats(request):
-    s= Sight.objects.all().values()
-    #squirrels = pd.read_csv("file.csv")
+    s= Record.objects.all().values()
     squirrels=pd.DataFrame(s)
 
-    x_age = ['Adult','Juvenile','Unknown']
+    x_age = ['Adult','Juvenile', 'N/A']
     y_age = squirrels['age'].value_counts()
 
-    x_fur = ['Gray','Cinnamon','Black','Unknown']
+    x_fur = ['Gray','Cinnamon','Black','N/A']
     y_fur = squirrels['primary_fur_color'].value_counts()
 
-    x_loc = ['Ground Plane','Above Ground','Unknown']
+    x_loc = ['Ground Plane','Above Ground','N/A']
     y_loc = squirrels['location'].value_counts()
 
     x_shift = squirrels['shift'].value_counts().index
@@ -66,17 +63,8 @@ def stats(request):
     x_run = ['False','True']
     y_run = squirrels['running'].value_counts()
 
-    x_cha = ['False','True']
-    y_cha = squirrels['foraging'].value_counts()
-
-    x_cli = ['False','True']
-    y_cli = squirrels['climbing'].value_counts()
-
-    x_eat = ['False','True']
-    y_eat = squirrels['eating'].value_counts()
-
     fig, axs = plt.subplots(2, 4, figsize=(30,15))
-    fig.suptitle('SQUIRREL STATS', fontsize=50)
+    fig.suptitle('General Stats about the Sightings', fontsize= 40)
 
     axs[0,0].bar(x_age, height=y_age, color=(0, 0.7, 0))
     axs[0,0].set_title('Squirrels by Age', fontsize=30)
@@ -98,26 +86,11 @@ def stats(request):
     axs[0,3].set_ylabel('Frequency of sightings', fontsize=25)
     axs[0,3].tick_params(axis='both', which='major', labelsize=20)
 
-
     axs[1,0].bar(x_run, height=y_run, color=(0, 0.7, 0))
     axs[1,0].set_xlabel('Running Squirrels', fontsize=25)
     axs[1,0].set_ylabel('Frequency of sightings', fontsize=25)
     axs[1,0].tick_params(axis='both', which='major', labelsize=20)
 
-    axs[1,1].bar(x_cha, height=y_cha, color=(1, 0.7, 0))
-    axs[1,1].set_xlabel('Foraging squirrels', fontsize=25)
-    axs[1,1].set_ylabel('Frequency of sightings', fontsize=25)
-    axs[1,1].tick_params(axis='both', which='major', labelsize=20)
-
-    axs[1,2].bar(x_cli, height=y_cli, color=(0, 0, 1))
-    axs[1,2].set_xlabel('Climbing squirrels', fontsize=25)
-    axs[1,2].set_ylabel('Frequency of sightings', fontsize=25)
-    axs[1,2].tick_params(axis='both', which='major', labelsize=20)
-
-    axs[1,3].bar(x_eat, height=y_eat, color=(0, 1, 0))
-    axs[1,3].set_xlabel('Eating squirrels', fontsize=25)
-    axs[1,3].set_ylabel('Frequency of sightings', fontsize=25)
-    axs[1,3].tick_params(axis='both', which='major', labelsize=20)
 
     buffer = BytesIO()
     canvas = pylab.get_current_fig_manager().canvas
