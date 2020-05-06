@@ -3,6 +3,8 @@ An IEOR4501 Tools for Analytics project. The project is Django-based and tracks 
 
 The following contents are paraphrased or copied from [*Squirrel Tracker*](https://docs.google.com/document/d/1SPv3fMDKiemrR86rD-S9ecvI2npz3PljDzwCfxK2x5g/edit), the project description.
 
+The website is http://35.192.201.79/.
+
 The totally true background story
 ------------------------------------
 Eccentric billionaire Joffrey Hosencratz just purchased the web development company I work for. I’ve met him once in an elevator and he was impressed with my skill in developing web applications with the Django framework. He also relayed that his most recent trip to Sedona, AZ has left him in a bit of trouble. See, he fancies the show Rick and Morty and a particular scene coupled with a traumatic childhood squirrel experience and a bad crystal bath experience in Sedona as left him wanting. 
