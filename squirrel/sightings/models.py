@@ -21,8 +21,9 @@ class Record(models.Model):
             choices = SHIFT_CHOICES
             )
 
-    date = models.DateField(
-            'Date'
+    date = models.IntegerField(
+            'Date',
+            help_text = "MMDDYYYY"
            )
     
     AGE_CHOICES = (

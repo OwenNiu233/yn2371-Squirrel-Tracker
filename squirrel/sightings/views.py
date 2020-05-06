@@ -45,16 +45,16 @@ def add(request):
 
 #This stats function plots the general stats that are shown on /sightings/stats.
 def stats(request):
-    s= Record.objects.all().values()
+    s = Record.objects.all().values()
     squirrels=pd.DataFrame(s)
 
-    x_age = ['Adult','Juvenile', 'N/A']
+    x_age = ['Adult', 'Juvenile', 'N/A']
     y_age = squirrels['age'].value_counts()
 
-    x_fur = ['Gray','Cinnamon','Black','N/A']
+    x_fur = ['Gray', 'Cinnamon', 'Black','N/A']
     y_fur = squirrels['primary_fur_color'].value_counts()
 
-    x_loc = ['Ground Plane','Above Ground','N/A']
+    x_loc = ['Ground Plane', 'Above Ground','N/A']
     y_loc = squirrels['location'].value_counts()
 
     x_shift = squirrels['shift'].value_counts().index
