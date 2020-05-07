@@ -28,9 +28,9 @@ def s_id(request, user_id):
     return render(request, 'sightings/update.html', {'form': form})
 
 def index(request):
-    squirrel_list = Record.objects.order_by('id')
+    s_list = Record.objects.order_by('id')
     template = loader.get_template('sightings/index.html')
-    context = {'squirrel_list': squirrel_list}
+    context = {'squirrel_list': s_list}
     return HttpResponse(template.render(context, request))
 
 def add(request):
@@ -66,12 +66,12 @@ def stats(request):
     fig, axs = plt.subplots(2, 4, figsize=(30,15))
     fig.suptitle('General Stats about the Sightings', fontsize= 40)
 
-    axs[0,0].bar(x_age, height=y_age, color=(0, 0.7, 0))
+    axs[0,0].bar(x_age, height=y_age, color=(0, 0.5, 0))
     axs[0,0].set_title('Squirrels by Age', fontsize=30)
     axs[0,0].set_ylabel('Frequency of sightings', fontsize=25)
     axs[0,0].tick_params(axis='both', which='major', labelsize=20)
 
-    axs[0,1].bar(x_fur, height=y_fur, color=(1, 0.7, 0))
+    axs[0,1].bar(x_fur, height=y_fur, color=(1, 0.5, 0))
     axs[0,1].set_title('Squirrels by Primary Fur Color', fontsize=30)
     axs[0,1].set_ylabel('Frequency of sightings', fontsize=25)
     axs[0,1].tick_params(axis='both', which='major', labelsize=20)
@@ -86,7 +86,7 @@ def stats(request):
     axs[0,3].set_ylabel('Frequency of sightings', fontsize=25)
     axs[0,3].tick_params(axis='both', which='major', labelsize=20)
 
-    axs[1,0].bar(x_run, height=y_run, color=(0, 0.7, 0))
+    axs[1,0].bar(x_run, height=y_run, color=(0, 0.5, 0))
     axs[1,0].set_xlabel('Running Squirrels', fontsize=25)
     axs[1,0].set_ylabel('Frequency of sightings', fontsize=25)
     axs[1,0].tick_params(axis='both', which='major', labelsize=20)
