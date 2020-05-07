@@ -7,6 +7,7 @@ from sightings.models import Record
 def index(request):
     template = loader.get_template('map.html')
     #map.html is provided by Prof. Logston
-    records = Record.objects.all()
-    context = {'sighting records': records}
+    sightings = Record.objects.all()
+    sightingsshow = sightings[:100]
+    context = {'sightingsshow': sightingsshow}
     return HttpResponse(template.render(context, request))
