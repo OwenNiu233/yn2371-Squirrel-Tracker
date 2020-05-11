@@ -1,23 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>View</title>
-</head>	
-<body>
-<h2>Click on an Unique Squirrel ID to view or update the pticular sighting record</h2>
-<h2><a href = "/sightings/add/">Click Here to create a new sighting record</a></h2>
-<h2><a href = "/sightings/stats/">Click Here for general stats about the sightings</a></h2>
-<table border = 1>
-    <tr>
-	<th>unique_squirrel_id</th>
-	<th>date</th>
-    </tr>
-    {% for item in s_list %}
-    <tr> 
-	<td><a href="/sightings/{{ item.unique_squirrel_id }}/">{{ item.unique_squirrel_id }}</a></td>
-	<td>{{ item.date }}</td>
-    </tr>
-    {% endfor %}
-</table>
-</body>
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>View</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>	
+	<body>
+		<div class="card" style="width: 80rem;">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Click on an Unique Squirrel ID to view or update the pticular sighting record</li>
+				<li class="list-group-item"><a href = "/sightings/add/">Click Here to create a new sighting record</a></li>
+				<li class="list-group-item"><a href = "/sightings/stats/">Click Here for general stats about the sightings</a></li>
+			</ul>
+		</div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">unique_squirrel_id</th>
+					<th scope="col">date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in s_list %}
+				<tr> 
+					<td><a href="/sightings/{{ item.unique_squirrel_id }}/">{{ item.unique_squirrel_id }}</a></td>
+					<td>{{ item.date }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	</body>
 </html>
