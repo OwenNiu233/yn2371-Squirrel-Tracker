@@ -12,7 +12,7 @@ He would like to start keeping track of all the known squirrels and plans to sta
 Link
 ------------------------------------
 
-The website is http://35.224.233.160/.
+The website is https://ieor4501-tool-4-analytics.df.r.appspot.com/.
 
 Contributor
 ------------------------------------
