@@ -12,7 +12,35 @@ def index(request):
 		<title>Home Page</title>
 	</head>
 	<body>
-		<h1>Welcome to Squirrel Tracker by yn2371.</h1>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="">SquaTra yn2371		</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon">		</span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="">Home 		<span class="sr-only">(current)		</span>		</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/map/">Map		</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Sightings
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/sightings/add/">Add		</a>
+							<a class="dropdown-item" href="/sightings/stats/">Stats		</a>
+							<div class="dropdown-divider">		</div>
+							<a class="dropdown-item" href="/sightings/">Sightings		</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+                <h1>Welcome to Squirrel Tracker by yn2371.</h1>
 		<ul class="list-group">
 			<li class="list-group-item"><a href = "/map/">Click here to see a map that displays the location of the squirrel sightings.</a></li>
 			<li class="list-group-item"><a href = "/sightings/">Click here to see a list of all squirrel sightings.</a></li>
