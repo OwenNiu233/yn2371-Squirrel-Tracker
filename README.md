@@ -1,7 +1,7 @@
 # yn2371-Squirrel-Tracker
 An IEOR4501 Tools for Analytics project. The project is Django-based and tracks squirrels.
 
-The following contents are paraphrased or copied from [*Squirrel Tracker*](https://docs.google.com/document/d/1SPv3fMDKiemrR86rD-S9ecvI2npz3PljDzwCfxK2x5g/edit), the project description.
+The following contents are paraphrased or copied from the project description.
 
 The totally true background story
 ------------------------------------
@@ -12,12 +12,13 @@ He would like to start keeping track of all the known squirrels and plans to sta
 Link
 ------------------------------------
 
+The website is http://35.224.233.160/.
 
 Contributor
 ------------------------------------
 ### Project Group 2, Section 1
 
-UNIs: [yn2371]
+UNI: [yn2371]
 
 Yipeng Niu yn2371
 
